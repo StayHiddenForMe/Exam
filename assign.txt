@@ -1,0 +1,1327 @@
+Assignment 1:
+
+1. Create a Java program to accept 10 numbers from user, store in an array. Find
+the second largest and second smallest number from it. Use Scanner class to accept input from user.
+Solution:
+import java.util.Scanner;
+public class Find
+{
+public static void main(String []args)
+{
+Scanner sc=new Scanner(System.in);
+int n;
+System.out.println("Enter the size of the array");
+n=sc.nextInt();
+int arr[]=new int[n];
+System.out.println("Enter the array");
+for(int i=0;i<n;i++)
+{
+arr[i]=sc.nextInt();
+}
+for(int i=0;i<n;i++)
+{
+for(int j=i+1;j<n;j++)
+{
+if(arr[i]<arr[j])
+{
+int temp=arr[i];
+arr[i]=arr[j];
+arr[j]=temp;
+}
+}
+}
+System.out.println("Second Largest element is "+arr[1]);
+System.out.println("Second Smallest element is "+arr[n-2]);
+}
+}
+
+
+2. Create a Java program to accept number of strings from user and sort them in
+alphabetical order. Use String class to store accepted string from user.
+Solution:
+import java.util.Scanner;
+public class alphabetical
+{
+public static void main(String[] args)
+{
+int count;
+String temp;
+Scanner scan = new Scanner(System.in);
+System.out.print("Enter number of strings:");
+count = scan.nextInt();
+String str[] = new String[count];
+Scanner scan2 = new Scanner(System.in);
+System.out.println("Enter the Strings one by one:");
+for(int i = 0; i < count; i++)
+{
+str[i] = scan2.nextLine();
+}
+scan.close();
+scan2.close();
+for (int i = 0; i < count; i++)
+{
+for (int j = i + 1; j < count; j++) {
+if (str[i].compareTo(str[j])>0)
+{
+temp = str[i];
+str[i] = str[j];
+str[j] = temp;
+}
+}
+}
+System.out.print("Strings in Alphabetical Order:");
+for (int i = 0; i <= count - 1; i++)
+{
+System.out.print(str[i] + ", ");
+}
+}
+}
+
+
+3. Create a Java program to accept two numbers from user, find GCD and LCM of both the numbers. Use Scanner class to accept two numbers from user.
+Solution:
+import java.util.Scanner;
+public class GCDLCM
+{
+static int gcd(int x, int y)
+{
+int r=0, a, b;
+a = (x > y) ? x : y;
+b = (x < y) ? x : y;
+r = b;
+while(a % b != 0)
+{
+r = a % b;
+a = b;
+b = r;
+}
+return r;
+}
+static int lcm(int x, int y)
+{
+int a;
+a = (x > y) ? x : y;
+while(true)
+{
+if(a % x == 0 && a % y == 0)
+return a;
+++a;
+}
+}
+public static void main(String args[])
+{
+Scanner input = new Scanner(System.in);
+System.out.println("Enter the two numbers: ");
+int x = input.nextInt();
+int y = input.nextInt();
+System.out.println("The GCD of two numbers is: " + gcd(x, y));
+System.out.println("The LCM of two numbers is: " + lcm(x, y));
+input.close();
+}
+}
+
+4. Create a Java program to accept a string from user and find the occurrences of
+characters in string.
+Solution:
+import java.util.Scanner;
+public class Occurence {
+public static void main(String args[]) {
+String str;
+int i, length, counter[] = new int[256];
+Scanner scanner = new Scanner(System.in);
+System.out.println("Enter a String:");
+str = scanner.nextLine();
+length = str.length();
+for (i = 0; i < length; i++) {
+counter[(int) str.charAt(i)]++;
+}
+for (i = 0; i < 256; i++) {
+if (counter[i] != 0) {
+System.out.println("The occurrence of " + (char) i + " is " + counter[i]);
+}
+}
+}
+}
+
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+Assignment 2
+
+1. Create a class Employee with following data members: Data Members: Emp_no, Emp_name, Basic Salary, and Designation. Create a Java program to do the following operations on it. Add constructor with Object as parameter to initialize class variables. Add a function calculate () which calculates the DA, HRA, PF and IT on the salary of Employee. Print all the employee information to the user.
+Solution:
+/package Employee;
+import java.util.*;
+class Oops {
+double DA,HRA,PF,IT,inhand,basicSalary;
+int empNo;
+String empName,designation;
+Oops(int empNo,String empName,double basicSalary,String designation) {
+this.empNo=empNo;
+this.empName=empName;
+this.basicSalary=basicSalary;
+this.designation=designation;
+}
+void cal() {
+DA = basicSalary*0.07;
+HRA = basicSalary*0.08;
+PF = basicSalary*0.17;
+IT = basicSalary*0.18;
+inhand=(basicSalary+DA+HRA)-(PF+IT);
+}
+void show() {
+System.out.println("******************************************************");
+System.out.println("Employee No. :- "+empNo);
+System.out.println("Employee Name :- "+empName);
+System.out.println("Employee Designation :- "+designation);
+System.out.println("******************************************************");
+System.out.println("Basic Salary :- " + basicSalary);
+System.out.println("DA :- "+DA);
+System.out.println("HRA :- "+HRA);
+System.out.println("PF :- "+PF);
+System.out.println("IT :- "+IT);
+System.out.println("******************************************************");
+System.out.println("In-Hand Salary :- "+inhand);
+}
+}
+public class Employee {
+public static void main(String args[]) {
+Scanner sc = new Scanner(System.in);
+System.out.print("Enter Employee Number :- ");
+int empNo=sc.nextInt();
+System.out.print("Enter Employee Name :- ");
+String empName=sc.next();
+System.out.print("Enter Employee Designation :- ");
+String designation = sc.next();
+System.out.print("Enter Salary of Employee :- ");
+double basicSalary=sc.nextDouble();
+Oops o = new Oops(empNo,empName,basicSalary,designation);
+o.cal();
+o.show();
+sc.close();
+}
+}
+
+
+
+2. Assume a tollbooth at a bridge. Vehicles passing by the booth are expected to pay a
+toll. Mostly they paid it, but sometimes a vehicle goes without paying. The tollbooth
+keeps track of vehicles that have gone by, and the total amount of money collected.
+Create a class tollbooth with three data members Paying Vehicles, Not paying
+Vehicles, and toll amount collected. It also contains following member functions
+payingVehicle() => count the vehicles and total toll amount
+notPayVehicle() => count the not pay vehicles but not toll amount
+display () => Displays all details.
+
+Solution:
+//package TollPlaza;
+import java.util.*;
+class Tollbooth {
+float tollAmount,total=0;
+int pcnt=0,npcnt=0;
+void paying(float tollAmount) {
+total=total+tollAmount;
+pcnt++;
+}
+void nonpaying() {
+npcnt++;
+}
+void show() {
+System.out.println("************************************* ");
+System.out.println("Total Paying vehicles :- "+pcnt);
+System.out.println("Total Non Paying Vehicles :- "+npcnt);
+System.out.println("Total Amount Collected :- "+total);
+}
+}
+public class Toll {
+public static void main(String[] args) {
+float tollAmount=0f;
+Scanner sc = new Scanner(System.in);
+Tollbooth t = new Tollbooth();
+int entry=1;
+while(entry!=2) {
+System.out.println("Do you want to enter more records?\n1.YES\n2.NO");
+entry = sc.nextInt();
+if(entry==2)
+break;
+System.out.print("Enter Vehicle Number :-");
+String vno=sc.next();
+vno +=sc.nextLine();
+System.out.print("Enter Amount :- ");
+tollAmount=sc.nextFloat();
+if(tollAmount>0) {
+t.paying(tollAmount);
+} else {
+t.nonpaying();
+}
+}
+t.show();
+sc.close();
+}
+}
+
+
+3. An organization maintains the records of all its employees as per the designation and the hierarchy of the designation. Each employee has his basic information and
+allowances are decided as per the hierarchy of the designation. e. g. Normal
+Employee gets basic salary Rs. 5000 per month. If that employee is Manager, he gets
+20% of basic as HRA additional. If that employee is Head of any department, he gets
+HRA + 10% of basic as Child Education Allowance. Use inheritance to solve this
+problem.
+
+Solution:
+//package organization;
+import java.util.*;
+class Employee {
+double esalary=40000;
+double emp() {
+return esalary;
+}
+}
+class Manager extends Employee {
+double msalary=esalary+(esalary*0.2);
+double hra() {
+return msalary;
+}
+}
+class Head extends Manager {
+double hsalary=msalary+(msalary*0.10);
+double cea() {
+return hsalary;
+}
+}
+public class Org {
+public static void main(String args[]) {
+int cnt=0;
+String ename[]=new String[20];
+String designation[] = new String[20];
+double esalary[] = new double[20];
+Head h = new Head();
+Scanner sc = new Scanner(System.in);
+while(true) {
+System.out.println("Want to Enter Records?\n1.Yes\t2.No");
+int ex = sc.nextInt();
+if(ex==2)
+break;
+System.out.println("Enter Employee Name :- ");
+ename[cnt] = sc.next();
+System.out.println("Enter Employee Designation :- ");
+designation[cnt] = sc.next();
+switch(designation[cnt]) {
+case "Employee" :
+esalary[cnt]=h.emp();
+break;
+case "Manager" :
+esalary[cnt]=h.hra();
+break;
+case "DeptHead" :
+esalary[cnt]=h.cea();
+break;
+}
+cnt++;
+}
+System.out.println("*************************************");
+System.out.println("Employee Records :- ");
+System.out.println(" Name\t Designation\tSalary");
+for(int i=0; i<cnt; i++) {
+System.out.println(" "+ename[i]+"\t "+designation[i]+"\t"+esalary[i]);
+}
+sc.close();
+}
+}
+
+
+4. Imagine a publishing company that markets both Books and Video-Cassettes versions of its works. Create a class Publication that stores the title (a string) and price (a float) of publication. From this class derive two classes: Book, which adds a page_count(integer) and a class Tape, which add a playing_time in minutes (float). Each of these three classes should have a getdata( ) and putdata() functions. Write a Java program to test these classes.
+
+Solution:
+//package publications;
+import java.util.*;
+class Publication {
+String title;
+float price;
+Publication(String title,float price) {
+this.title=title;
+this.price=price;
+}
+void getdata() {
+System.out.println("\n***Work Details***");
+System.out.println("Title :- "+title);
+System.out.println("Price :- "+price);
+}
+}
+class Book extends Publication {
+Book(String title, float price) {
+super(title, price);
+}
+int page_count;
+Scanner sc=new Scanner(System.in);
+void putdata() {
+System.out.println("Enter Number of Pages of book :-");
+page_count=sc.nextInt();
+}
+void getdata() {
+System.out.println("\n***Book Details***");
+System.out.println("Title :- "+title);
+System.out.println("Price :- "+price);
+System.out.println("Page Count :- "+page_count);
+}
+}
+class Tape extends Publication {
+Tape(String title, float price) {
+super(title, price);
+}
+Scanner sc=new Scanner(System.in);
+float minutes;
+void putdata() {
+System.out.println("Enter Minutes of Cassette :-");
+minutes=sc.nextFloat();
+}
+void getdata() {
+System.out.println("\n***Tape Details***");
+System.out.println("Title :- "+super.title);
+System.out.println("Price :- "+super.price);
+System.out.println("Minutes :- "+minutes);
+}
+}
+public class BookPublication {
+public static void main(String[] args) {
+String title;
+float price;
+Scanner sc = new Scanner(System.in);
+System.out.println("Enter Title :- ");
+title=sc.nextLine();
+System.out.println("Enter Price :- ");
+price = sc.nextFloat();
+Publication p=new Publication(title,price);
+Tape t =new Tape(title,price);
+Book b=new Book(title,price);
+b.putdata();
+t.putdata();
+p.getdata();
+b.getdata();
+t.getdata();
+sc.close();
+}
+}
+
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+Assignment 3
+
+1.Create an Interface IntegerQueue with two methods:
+void insert(int n): It inserts an integer number into the queue.
+int remove(): It removed an integer from the queue and returns it.
+Define a class IQueue which implements the Interface IntegerQueue. It also contains
+method to display integer numbers of queue. Create a Java program to perform all
+possible operations on the Queue.
+
+Solution:
+interface IntegerQueue{
+public void insert(int n);
+public int remove();
+}
+public class IQueue implements IntegerQueue{
+final int size = 30;
+int[] queue = new int[size];
+int front = -1;
+int rear = -1;
+public void insert(int n){
+if(rear==(size - 1) )
+{
+System.out.println("Queue is Full");
+return;
+}
+else
+{
+if(front==-1)
+front=0;
+rear++;
+queue[rear] = n;
+System.out.println("Data " + n + " is Enqueued in the queue");
+}
+}
+public int remove()
+{
+int data=0;
+if(front==-1 || front>rear)
+System.out.println("Queue is Empty");
+else{
+data=queue[front];
+front++;
+}
+return data;
+}
+public void display()
+{
+if(front == -1)
+System.out.println("Queue is Empty");
+else
+{
+System.out.println("Queue is :\n ");
+for(int i = front; i <= rear; i++)
+{
+System.out.println(queue[i]);
+}
+}
+}
+public static void main(String[] args){
+int data = 0;
+IQueue q = new IQueue();
+q.insert(30);
+q.insert(40);
+q.insert(50);
+q.display();
+data = q.remove();
+System.out.println(data +" is removed from the queue.");
+q.display();
+}
+}
+
+
+2. Create an Interface SearchInteger with two methods in it:
+void linearSearch(): Searches given element using Linear Search.
+void binarySearch(): Searches given element using Binary Search.
+Define a class NumberSearch, implement it from SearchInteger interface to search an
+integer number using either linear search or binary search method.
+
+Solution:
+import java.util.Scanner;
+interface SearchInteger {
+int linearSearch(int target, int[] arr);
+int binarySearch(int target, int[] arr);
+}
+public class NumberSearch implements SearchInteger{
+public int linearSearch(int target, int[] arr){
+for(int i = 0; i < arr.length; i++){
+if(arr[i] == target){
+return i;
+}
+}
+return -1;
+}
+public int binarySearch(int target, int arr[]){
+int start = 0;
+int end = arr.length - 1;
+while(start <= end){
+int mid = start + (end - start) / 2;
+if(target < arr[mid]){
+end = mid - 1;
+}else if(target > arr[mid]){
+start = mid + 1;
+}else{
+return mid;
+}
+}
+return -1;
+}
+public static void main(String[] args) {
+Scanner sc = new Scanner(System.in);
+NumberSearch ob = new NumberSearch();
+int[] arr = new int[8];
+System.out.println("Enter sorted Array Elements :");
+for(int i = 0; i < arr.length; i++){
+arr[i] = sc.nextInt();
+}
+System.out.println("Enter element to search from array :");
+int num = sc.nextInt();
+int ans_ls = ob.linearSearch(num, arr);
+System.out.println("Target found at index number (by using linear search):" + ans_ls);
+int ans_bs = ob.binarySearch(num, arr);
+System.out.println("Target found at index number (by using binary search):" + ans_bs);
+}
+}
+
+
+3. Create a package Number System which contains classes Decimal and Binary.
+Decimal class contains methods to convert decimal number into binary and octal.
+Binary class contains methods to convert binary number to decimal and octal. Create
+a Java program to import this package in a class which implements number system
+conversion.
+
+Solution:
+
+(To Compile: javac -d . Simple.java
+To Run: java mypack.Simple)
+
+package NumberSystem;
+//import NumberSystem.*;
+import java.util.Scanner;
+class Binary {
+public int bintodec(int binary){
+int decimal = 0;
+int n = 0;
+while(true){
+if(binary == 0){
+break;
+} else {
+int temp = binary%10;
+decimal += temp*Math.pow(2, n);
+binary = binary/10;
+n++;
+}
+}
+return decimal;
+}
+public int bintooct(int n)
+{
+int decimalNumber = bintodec(n);
+String octalString = Integer.toOctalString(decimalNumber);
+int octalNumber = Integer.parseInt(octalString);
+return octalNumber;
+}
+}
+//package NumberSystem
+class Decimal {
+public void dectobin(int decimal){
+int binary[] = new int[40];
+int index = 0;
+while(decimal > 0){
+binary[index++] = decimal%2;
+decimal = decimal/2;
+}
+for(int i = index-1;i >= 0;i--){
+System.out.print(binary[i]);
+}
+}
+public String dectooct(int decimal){
+int rem;
+String octal="";
+char octalchars[]={'0','1','2','3','4','5','6','7'};
+while(decimal>0)
+{
+rem=decimal%8;
+octal=octalchars[rem]+octal;
+decimal=decimal/8;
+}
+return octal;
+}
+}
+
+public class NumSysConv {
+public static void main(String[] args) {
+Scanner sc = new Scanner(System.in);
+System.out.println("Enter a binary number to covert into decimal and octal :");
+int binary = sc.nextInt();
+Binary b = new Binary();
+System.out.println("Decimal of binary is :"+ b.bintodec(binary));
+System.out.println("Octal of Binary is :"+b.bintooct(binary));
+Decimal d = new Decimal();
+System.out.println("Enter a decimal number to covert into binary and octal :");
+int decimal = sc.nextInt();
+System.out.println("\n Binary of decimal is :");
+d.dectobin(decimal);
+String ans_oct = d.dectooct(decimal);
+System.out.println("\nOctal of decimal is :" + ans_oct);
+}
+}
+
+
+4. Create a Java program to accept details of User like Adhar Card No, Name, Address,
+City and Age from the user. The program will throw a user defined exception “Invalid
+Age Exception” if age entered by user is below 18. Otherwise it will display message
+“Successful Registration”.
+
+Solution:
+package com.demo;
+//import com.demo.*;
+import java.util.Scanner;
+
+class UserException extends RuntimeException{
+	private String msg;
+	public UserException(String msg){
+		super(msg);
+		}
+	}
+
+public class ExceptionDemo{
+	public static void main(String[] args){
+		Scanner sc = new Scanner(System.in);
+		Scanner sc2 = new Scanner(System.in);
+
+		System.out.println("Enter Adhaar Card No: ");
+		int ad = sc.nextInt();
+
+		System.out.println("Enter Name: ");
+		String n = sc2.nextLine();
+
+		System.out.println("Enter Address: ");
+		String a = sc2.nextLine();
+
+		System.out.println("Enter Age: ");
+		int age = sc.nextInt();
+
+		if(age < 18){
+			throw new UserException("Invalid age");
+			}
+			else{
+				System.out.println("Successful Registration");
+				}
+
+		}
+	}
+
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+Assignment 4
+
+
+1.Create a Java program that reads two file names from the user. Check whether first file exists or not. If exist then read the content of it and write into second file by changing all occurrences of vowels from lower case to upper case.
+
+Solution:
+import java.lang.*;
+import java.io.*;
+import java.util.Scanner;
+class ReadWriteFile{
+public static void main(String[] args) throws Exception,FileNotFoundException{
+File f=new File("text1.txt");
+if(f.exists())
+{
+System.out.println("File found.........");
+FileReader fd=new FileReader("text1.txt");
+FileWriter fw=new FileWriter("text2.txt");
+BufferedReader br=new BufferedReader(fd);
+int temp;
+int EOF=-1;
+System.out.print("After updating format : ");
+while((temp=br.read())!=EOF)
+{
+char s = (char) temp;
+if(s=='a' || s=='A' || s=='e' || s=='E' || s=='i' || s=='I' || s=='O' || s=='o' || s=='u' || s=='U'){
+s=Character.toUpperCase(s);
+System.out.print(s);
+fw.write(s);
+}
+else{
+System.out.print(s);
+fw.write(s);
+}
+}
+System.out.println("\nUpdated text format stored in new file............");
+fw.flush();
+fd.close();
+fw.close();
+}
+else
+System.out.println("...Sorry file is not exists.....");
+}
+}
+
+
+2.Create a Java program to read the given file having Cricket data. Perform the following the operations:
+a. Display the data in terms of Year, Team-1, Team-2 and Winning Team.
+b. Display Team and number of times it won the World cup.
+c. Accept the country name from user and display how many times that country won World Cup and with what margin.
+
+Solution:
+import java.io.*;
+import java.util.Scanner;
+public class CricketData{
+public void displayData(){
+BufferedReader br;
+try{
+br=new BufferedReader(new FileReader("data.txt"));
+String s="";
+while((s=br.readLine())!= null){
+String data[]=new String[5];
+data=s.split(",");
+for(int i=0;i<5;i++){
+System.out.print(data[i]+" ");
+}
+System.out.println();
+}
+}catch(Exception e){}
+}
+public void displayWinning(){
+BufferedReader br;
+try{
+br=new BufferedReader(new FileReader("data.txt"));
+String s="";
+while((s=br.readLine())!= null){
+String data[]=new String[4];
+data=s.split(",");
+for(int i=0;i<4;i++){
+System.out.print(data[i]+" ");
+}
+System.out.println();
+}
+}catch(Exception e){}
+}
+public void worldCupWon(){
+BufferedReader br;
+int india=0,ban=0,sa=0,eng=0;
+String[] name={"IND","ENG","BAN","SA"};
+try{
+br=new BufferedReader(new FileReader("data.txt"));
+String s="";
+while((s=br.readLine())!= null){
+String data[]=new String[5];
+data=s.split(",");
+if((data[3].replaceAll("\\s+","")).equals("IND")){
+india++;
+}
+else if((data[3].replaceAll("\\s+","")).equals("ENG"))
+eng++;
+else if((data[3].replaceAll("\\s+","")).equals("BAN"))
+ban++;
+else if((data[3].replaceAll("\\s+","")).equals("SA"))
+sa++;
+}
+System.out.println("WorldCup Winning History");
+System.out.println("IND : "+india+"\nENG : "+eng+"\nBAN : "+ban+"\nSA : "+sa);
+}catch(Exception e){}
+}
+public void getData(){
+BufferedReader br;
+Scanner sc=new Scanner(System.in);
+try{
+br=new BufferedReader(new FileReader("data.txt"));
+String s="";
+System.out.println("Enter Country name : ");
+String n=sc.nextLine();
+while((s=br.readLine())!= null){
+String data[]=new String[5];
+data=s.split(",");
+if((data[3].replaceAll("\\s+","")).equals(n))
+{
+System.out.println(data[3]+" won by Margin "+(data[4].replaceAll("\\s+",""))+" in "+(data[2].replaceAll("\\s+","")));
+}
+}
+}catch(Exception e){}
+}
+public static void main(String[] args){
+CricketData c=new CricketData();
+System.out.println("\n\nCricket Data in File : ");
+c.displayData();
+System.out.println("\n\nTeam1 Team2 Winning Team data : ");
+c.displayWinning();
+System.out.println("\n\nWorld Cup Won : ");
+c.worldCupWon();
+System.out.println("\n\nData By Team : ");
+c.getData();
+}
+}
+
+
+3. Create a multithreaded application in which, first thread generate 10 terms of
+Fibonacci series, second thread print mathematical table up to 20, and third thread
+displays your name 15 times. Use Thread class to create user defined thread.
+
+Solution:
+class Fibonnacci implements Runnable{
+void getF(){
+int n1=0,n2=1,n3;
+System.out.println("\nFibonnaci Series : ");
+System.out.print(n1+" "+n2);
+for(int i=2;i<10;i++){
+n3=n1+n2;
+System.out.print(" "+n3);
+n1=n2;
+n2=n3;
+}
+System.out.println();
+}
+public void run(){
+Fibonnacci f=new Fibonnacci();
+f.getF();
+}
+}
+class MathTable implements Runnable{
+void getT(){
+System.out.println("\nMaths Table :");
+for(int i=1;i<=10;i++){
+for(int j=1;j<15;j++){
+System.out.print((i*j)+" ");
+}
+System.out.println();
+}
+System.out.println();
+}
+public void run(){
+MathTable m=new MathTable();
+m.getT();
+}
+}
+class Name implements Runnable{
+void getN(){
+for(int i=1;i<10;i++){
+System.out.print(" Pratik");
+}
+System.out.println();
+}
+public void run(){
+Name n=new Name();
+n.getN();
+}
+}
+class MultiThreadingDemo{
+public static void main(String[] args){
+Fibonnacci f=new Fibonnacci();
+MathTable m=new MathTable();
+Name n=new Name();
+Thread t1=new Thread(f);
+Thread t2=new Thread(m);
+Thread t3=new Thread(n);
+try{
+t1.start();
+t1.join();
+t2.start();
+t2.join();
+t3.start();
+}catch(Exception e){
+e.printStackTrace();
+}
+}
+}
+
+
+4. Create a multithreaded application that performs following tasks. Use Runnable
+interface to create user defined thread.
+a. Print last 15 alphabets in reverse order.
+b. Print first 10 prime numbers.
+c. Print first 15 alphabets.
+
+Solution:
+class reverseClass implements Runnable {
+void revAlpha(){
+System.out.print("\nlast 15 alphabets in reverse order :");
+int count=0;
+char i='z';
+do{
+System.out.print(" "+i);
+count++;
+i--;
+}while(count!=15);
+System.out.println();
+}
+public void run(){
+reverseClass r=new reverseClass();
+r.revAlpha();
+}
+}
+class primeClass implements Runnable {
+int count=0;
+void prime()
+{
+System.out.print("\n1st 10 Prime nos : ");
+int i=2;
+do{
+int c=0;
+for(int j=2;j<i;j++)
+{
+if(i%j==0)
+{
+c++;
+break;
+}
+}
+if(c==0){
+System.out.print(" "+i);
+count++;
+}
+i++;
+}while(count<10);
+System.out.println();
+}
+public void run(){
+primeClass p=new primeClass();
+p.prime();
+}
+}
+class aplhaClass implements Runnable{
+void Alpha(){
+System.out.print("\nFirst 15 alphabet :");
+int count=0;
+char i='a';
+do{
+System.out.print(" "+i);
+count++;
+i++;
+}while(count!=15);
+System.out.println();
+}
+public void run(){
+aplhaClass a=new aplhaClass();
+a.Alpha();
+}
+}
+class Demo4{
+public static void main(String[] args){
+reverseClass r=new reverseClass();
+primeClass p=new primeClass();
+aplhaClass a=new aplhaClass();
+Thread t1=new Thread(r);
+Thread t2=new Thread(p);
+Thread t3=new Thread(a);
+try{
+t1.start();
+t1.join();
+t2.start();
+t2.join();
+t3.start();
+}catch(Exception e){
+e.printStackTrace();
+}
+}
+}
+
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+Assignment 5 
+
+1. Create a Java application using collection framework to perform following operations on ArrayList.
+a. Create an ArrayList of integer numbers.
+b. Add element at specific position in ArrayList.
+c. Remove element from specific position ArrayList
+d. Reverse elements in ArrayList.
+e. Sort the elements of ArrayList.
+Solution :
+
+import java.util.*;
+class Demo1{
+public static void main(String[] args){
+ArrayList<Integer> al=new ArrayList<Integer>();
+al.add(20);
+al.add(34);
+al.add(33);
+al.add(77);
+System.out.print("\n\nArrayList : ");
+for(Integer i:al)
+System.out.print(" "+i);
+System.out.print("\n\nAdding element at specific position in ArrayList : ");
+al.add(1,90);
+al.add(0,54);
+for(Integer i:al)
+System.out.print(" "+i);
+System.out.print("\n\nRemoving element at specific position in ArrayList : ");
+al.remove(2);
+for(Integer i:al)
+System.out.print(" "+i);
+System.out.print("\n\nReversing Elements : ");
+Collections.reverse(al);
+for(Integer i:al)
+System.out.print(" "+i);
+System.out.print("\n\nSorted ArrayList : ");
+Collections.sort(al);
+for(Integer i:al)
+System.out.print(" "+i);
+}
+}
+
+
+
+2. Create a Java application using collection framework to perform following operations on TreeSet.
+a. Create TreeSet with String elements.
+b. Traverse through TreeSet.
+c. Insert the elements in TreeSet.
+d. Remove the specified element from TreeSet.
+
+Solution:
+import java.util.*;
+class Demo2{
+public static void main(String[] args){
+TreeSet<String> al=new TreeSet<String>();
+al.add("Pratik");
+al.add("Somesh");
+al.add("Sahil");
+al.add("Avdhut");
+System.out.print("\n\nTreeSet : ");
+for(String i:al)
+System.out.print(" "+i);
+System.out.print("\n\nTreeSet After Removing 'Somesh' : ");
+al.remove("Somesh");
+Iterator itr=al.iterator();
+while(itr.hasNext())
+System.out.print(" "+itr.next());
+}
+}
+
+
+3. Create a Java application using collection framework to perform following operation on LinkedList.
+a. Create LinkedList of String elements.
+b. Iterate through the LinkedList.
+c. Insert element at specified position.
+d. Remove element from specified position.
+
+Solution:
+import java.util.*;
+class Demo3{
+public static void main(String[] args){
+LinkedList<String> al=new LinkedList<String>();
+al.add("Somesh");
+al.add("Sritam");
+al.add("Avdhut");
+al.add("Pratik");
+System.out.print("\n\nLinkedList : ");
+for(String i:al)
+System.out.print(" "+i);
+System.out.print("\n\nLinkedList after adding element at 3rd and 5th position : ");
+al.add(2,"Sahil");
+al.add(4,"Sushant");
+Iterator itr=al.iterator();
+while(itr.hasNext())
+System.out.print(" "+itr.next());
+System.out.print("\n\nLinkedList after removing 4th element : ");
+al.remove(3);
+Iterator itr1=al.iterator();
+while(itr1.hasNext())
+System.out.print(" "+itr1.next());
+}
+}
+
+
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+Assignment 6
+
+
+1. Create a GUI based Java application which contains a Frame with 3 push buttons Red, Green, and Blue in it. Program should handles an event such that, When user clicked on Red button, background color of frame changes to red, when user clicked on Green button, background color changes to green, and when user clicked on Blue button, color changes to blue.
+Solution:
+
+import javax.swing.*;
+import java.awt.event.*;
+import java.awt.*;
+class frame1 extends JFrame {
+Container frame;
+JButton redButton, greenButton, blueButton;
+frame1() {
+setTitle("Assignment 6");
+setSize(350, 300);
+setLocation(100, 100);
+setDefaultCloseOperation(EXIT_ON_CLOSE);
+frame = getContentPane();
+frame.setLayout(null);
+redButton = new JButton("Red");
+redButton.setBounds(10, 200, 70, 20);
+frame.add(redButton);
+greenButton = new JButton("Green");
+greenButton.setBounds(110, 200, 70, 20);
+frame.add(greenButton);
+blueButton = new JButton("Blue");
+blueButton.setBounds(210, 200, 70, 20);
+frame.add(blueButton);
+redButton.addActionListener(new ActionListener() {
+public void actionPerformed(ActionEvent e) {
+frame.setBackground(Color.RED);
+}
+});
+greenButton.addActionListener(new ActionListener() {
+public void actionPerformed(ActionEvent e) {
+frame.setBackground(Color.GREEN);
+}
+});
+blueButton.addActionListener(new ActionListener() {
+public void actionPerformed(ActionEvent e) {
+frame.setBackground(Color.BLUE);
+}
+});
+setVisible(true);
+}
+}
+public class swing1 {
+public static void main(String[] args) {
+frame1 f1 = new frame1();
+// new frame1();
+}
+}
+
+
+2. Create GUI based Java application which contains a frame which accepts User Name and Password from user in two text fields. Check if password is correct then display it in client area of frame, otherwise display error message in client area.
+Solution:
+
+import java.awt.*;
+import java.awt.event.*;
+import javax.swing.*;
+public class swing2 extends JFrame implements ActionListener {
+JLabel usernameLabel, passwordLabel;
+JTextField usernameField, passwordField;
+JButton loginButton;
+public swing2() {
+setTitle("Assignment 6");
+setSize(400, 150);
+setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+usernameLabel = new JLabel("Username: ");
+usernameField = new JTextField(20);
+passwordLabel = new JLabel("Password: ");
+passwordField = new JPasswordField(20);
+loginButton = new JButton("Login");
+loginButton.addActionListener(this);
+Container content = getContentPane();
+content.setLayout(new GridLayout(3, 2, 5, 5));
+content.add(usernameLabel);
+content.add(usernameField);
+content.add(passwordLabel);
+content.add(passwordField);
+content.add(new Label());
+content.add(loginButton);
+}
+public void actionPerformed(ActionEvent event) {
+String username = usernameField.getText();
+String password = passwordField.getText();
+if (password.equals("password")) {
+JOptionPane.showMessageDialog(this, "Your Password is: " + password, "Success", JOptionPane.PLAIN_MESSAGE);
+} else {
+JOptionPane.showMessageDialog(this, "Incorrect password!", "Error", JOptionPane.ERROR_MESSAGE);
+}
+}
+public static void main(String[] args) {
+swing2 frame = new swing2();
+frame.setVisible(true);
+}
+}
+
+
+3. Create GUI based Java application which handles the Mouse Event. When user clicks first time on the panel, it should draw a circle. When user clicks second time on the panel, it should draw Rectangle. When user clicks third time on the panel, it should draw an ellipse. Repeat this again, when user clicks again, it should draw circle, and so on.
+Use different color for circle, rectangle and ellipse. The new drawing should not erase the previous one.
+
+Solution:
+import java.awt.Color;
+import java.awt.Graphics;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import javax.swing.JFrame;
+import javax.swing.JPanel;
+public class swing3 extends JFrame {
+private int clickCount = 0;
+private JPanel panel;
+public swing3() {
+setTitle("Draw Shapes");
+setSize(500, 500);
+setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+setLocationRelativeTo(null);
+panel = new JPanel();
+panel.addMouseListener(new MouseAdapter() {
+public void mouseClicked(MouseEvent e) {
+int x = e.getX();
+int y = e.getY();
+clickCount++;
+Graphics g = panel.getGraphics();
+switch (clickCount % 3) {
+case 1:
+g.setColor(Color.RED);
+g.fillOval(x, y, 50, 50);
+break;
+case 2:
+g.setColor(Color.BLUE);
+g.fillRect(x, y, 50, 50);
+break;
+case 0:
+g.setColor(Color.GREEN);
+g.fillOval(x, y, 50, 100);
+break;
+}
+}
+});
+add(panel);
+}
+public static void main(String[] args) {
+swing3 drawShapes = new swing3();
+drawShapes.setVisible(true);
+}
+}
+
+
+4. Create an applet which contains one Combo Box for fonts name, One List Box for Font Size, and 3 Radio Buttons for Font Style i.e. Bold, Italic, Plain. The applet also displays some string message by a label. Write a Java program such that user will able to change the Font Type, Font Size, and Font Style of the text displayed as label caption
+
+Solution :
+
+
+import javax.swing.*;
+import java.awt.*;
+import java.awt.event.*;
+class swing4 extends JFrame {
+Container c;
+JLabel fontlbl, sizelbl,stylelbl;
+JComboBox comboBox1,comboBox2;
+JTextArea mainlbl;
+JRadioButton b,i,p;
+ButtonGroup grp;
+String fon = "Arial";
+int size = 12;
+int stl = 0;
+swing4() {
+setTitle("Assignment 6");
+setSize(780, 500);
+setLocation(320, 100);
+setDefaultCloseOperation(EXIT_ON_CLOSE);
+setResizable(false);
+c = getContentPane();
+c.setLayout(null);
+fontlbl = new JLabel("Font :");
+fontlbl.setBounds(10,10,50,30);
+sizelbl = new JLabel("Size :");
+sizelbl.setBounds(170, 10, 50, 30);
+stylelbl = new JLabel("Style :");
+stylelbl.setBounds(330, 10, 50, 30);
+mainlbl = new JTextArea("My Name is Pratik");
+mainlbl.setBounds(10,100,745,350);
+mainlbl.setLineWrap(true);
+mainlbl.setFont(new Font(fon,stl,size));
+String[] fnt = { "Arial", "Agency FB", "Algerian", "Arial Rounded MT", "Bahnschrift", "Baskerville Old Face", "Bauhaus 93", "Bell MT", "Berlin Sans FB", "Bernard MT", "Blackadder ITC" }; JComboBox<String> comboBox1 = new JComboBox<>(fnt);
+comboBox1.setBounds(10,40,130,30);
+comboBox1.addActionListener(new ActionListener() {
+public void actionPerformed(ActionEvent event) {
+JComboBox<String> source = (JComboBox<String>) event.getSource();
+String selectedItem = (String) source.getSelectedItem();
+System.out.println("Selected item: " + selectedItem);
+fon = selectedItem;
+mainlbl.setFont(new Font(fon, stl, size));
+}
+});
+Integer[] numbers = { 10, 12, 14, 16, 18, 20, 22, 24, 26, 28, 30, 32, 34, 36, 38, 40, 42, 44, 46, 48, 50, 52, 54, 56, 58, 60, 62, 64, 66, 68, 70, 72, 74, 76, 78, 80, 82, 84, 86, 88, 90, 92, 94, 96, 98, 100}; JComboBox<Integer> comboBox2 = new JComboBox<>(numbers);
+comboBox2.setBounds(170, 40, 130, 30);
+comboBox2.addActionListener(e -> {
+int selectedIndex = comboBox2.getSelectedIndex();
+System.out.println("Selected Value: " + numbers[selectedIndex]);
+size = numbers[selectedIndex];
+mainlbl.setFont(new Font(fon, stl, size));
+});
+grp = new ButtonGroup();
+p = new JRadioButton("Plain");
+p.setBounds(330, 40, 60, 30);
+b = new JRadioButton("Bold");
+b.setBounds(390, 40, 60, 30);
+i = new JRadioButton("Italic");
+i.setBounds(450, 40, 60, 30);
+p.addActionListener(new ActionListener() {
+public void actionPerformed(ActionEvent e) {
+stl = 0;
+mainlbl.setFont(new Font(fon, stl, size));
+}
+});
+b.addActionListener(new ActionListener() {
+public void actionPerformed(ActionEvent e) {
+stl = 1;
+mainlbl.setFont(new Font(fon, stl, size));
+}
+});
+i.addActionListener(new ActionListener() {
+public void actionPerformed(ActionEvent e) {
+stl = 2;
+mainlbl.setFont(new Font(fon, stl, size));
+}
+});
+grp.add(p);
+grp.add(b);
+grp.add(i);
+c.add(fontlbl);
+c.add(sizelbl);
+c.add(stylelbl);
+c.add(mainlbl);
+c.add(comboBox1);
+c.add(comboBox2);
+c.add(p);
+c.add(b);
+c.add(i);
+setVisible(true);
+}
+}
+class page {
+public static void main(String[] args) {
+swing4 s = new swing4();
+}
+}
